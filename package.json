@@ -1,0 +1,17 @@
+{
+  "name": "mysql-easy-query",
+  "version": "0.0.1",
+  "description": "mysql easy query",
+  "main": "index.js",
+  "repository": "https://github.com/yefei/mysql-easy-query",
+  "author": "YeFei",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^4.3.1",
+    "sql-easy-builder": "^0.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.17.0",
+    "mysql": "^2.18.1"
+  }
+}
