@@ -1,7 +1,7 @@
 'use strict';
 
 const mysql = require('mysql');
-const { Query } = require('..');
+const { Query, PoolQuery } = require('..');
 
 /*
 CREATE DATABASE `test`;
@@ -16,16 +16,19 @@ CREATE TABLE `user` (
 INSERT INTO `user`(`name`, `age`) VALUES ('yefei', 30);
 */
 
-const conn = mysql.createConnection({
+const pool = mysql.createPool({
   host: '127.0.0.1',
   user: 'root',
   database: 'test',
 });
 
+let conn;
+
 before(function() {
   return new Promise((resolve, reject) => {
-    conn.connect(err => {
+    pool.getConnection((err, connection) => {
       if (err) return reject(err);
+      conn = connection;
       resolve();
     });
   });
@@ -33,7 +36,7 @@ before(function() {
 
 after(function() {
   return new Promise((resolve, reject) => {
-    conn.end(err => {
+    pool.end(err => {
       if (err) return reject(err);
       resolve();
     });
@@ -65,6 +68,31 @@ describe('Query', function() {
   it('transaction', async function() {
     const q = new Query(conn);
     await q.transaction(async () => {
+      await q.query(b => b.update('user', { age: 100 }).where({ id: 1 }));
+    });
+  });
+});
+
+const poolQuery = new PoolQuery(pool);
+
+describe('PoolQuery', function() {
+  it('query(raw sql)', async function() {
+    await poolQuery.query('SELECT 1+1');
+  });
+
+  it('query(builder)', async function() {
+    const q = new Query(conn);
+    const b = q.builder();
+    b.select(b.raw('1+1'));
+    await poolQuery.query(b);
+  });
+
+  it('query(callback(builder))', async function() {
+    await poolQuery.query(b => b.select(b.raw('1+1')));
+  });
+
+  it('transaction', async function() {
+    await poolQuery.transaction(async q => {
       await q.query(b => b.update('user', { age: 100 }).where({ id: 1 }));
     });
   });
