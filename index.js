@@ -114,3 +114,4 @@ class Query {
 }
 
 module.exports = Query;
+module.exports.debug = debug;
