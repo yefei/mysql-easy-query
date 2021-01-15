@@ -12,11 +12,11 @@ class Query {
   }
 
   /**
-   * 查询
+   * SQL查询
    * @param {string} sql 查询语句
    * @param {*} [params] 参数
    */
-  query(sql, params) {
+  rawQuery(sql, params) {
     return new Promise((resolve, reject) => {
       const startTime = Date.now();
       this.conn.query(sql, params, (error, results, fields) => {
@@ -70,12 +70,31 @@ class Query {
   }
 
   /**
-   * @param {function(Builder):Promise<void>} callback
+   * @returns {Builder}
    */
-  async builder(callback) {
-    const builder = new Builder();
-    await callback(builder);
-    return this.query(...builder.build());
+  builder() {
+    return new Builder();
+  }
+
+  /**
+   * 查询
+   * @param {function(Builder)|Builder|string} arg0 Builder or callback(Builder) or sql string
+   * @param {*} [params] sql string use
+   * @returns {*}
+   */
+  async query(arg0, params) {
+    if (typeof arg0 === 'string') {
+      return this.rawQuery(arg0, params);
+    }
+    let builder = arg0;
+    if (typeof arg0 === 'function') {
+      builder = this.builder();
+      await arg0(builder);
+    }
+    if (builder instanceof Builder) {
+      return this.rawQuery(...builder.build());
+    }
+    throw new Error('unknown arg0 type');
   }
 
   /**
@@ -85,7 +104,7 @@ class Query {
    * @returns {Promise<number>}
    */
   async count(table, where) {
-    const res = await this.builder(q => {
+    const res = await this.query(q => {
       q.count('*', 'c');
       q.from(table);
       where && q.where(where);
