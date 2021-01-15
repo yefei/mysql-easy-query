@@ -20,7 +20,7 @@ class Query {
     return new Promise((resolve, reject) => {
       const startTime = Date.now();
       this.conn.query(sql, params, (error, results, fields) => {
-        debug('DB[%o]: %o %o %oms', this.conn.threadId, sql, params, Date.now() - startTime);
+        debug('TID[%o]: %o %o %oms', this.conn.threadId, sql, params, Date.now() - startTime);
         if (error) reject(error);
         else resolve(results);
       });
@@ -34,7 +34,7 @@ class Query {
     return new Promise((resolve, reject) => {
       const startTime = Date.now();
       this.conn.beginTransaction(err => {
-        debug('DB[%o]: beginTransaction %oms', this.conn.threadId, Date.now() - startTime);
+        debug('TID[%o]: beginTransaction %oms', this.conn.threadId, Date.now() - startTime);
         if (err) reject(err);
         else resolve();
       });
@@ -48,7 +48,7 @@ class Query {
     return new Promise((resolve, reject) => {
       const startTime = Date.now();
       this.conn.commit(err => {
-        debug('DB[%o]: commit %oms', this.conn.threadId, Date.now() - startTime);
+        debug('TID[%o]: commit %oms', this.conn.threadId, Date.now() - startTime);
         if (err) reject(err);
         else resolve();
       });
@@ -62,7 +62,7 @@ class Query {
     return new Promise((resolve, reject) => {
       const startTime = Date.now();
       this.conn.rollback(err => {
-        debug('DB[%o]: rollback %oms', this.conn.threadId, Date.now() - startTime);
+        debug('TID[%o]: rollback %oms', this.conn.threadId, Date.now() - startTime);
         if (err) reject(err);
         else resolve();
       });
