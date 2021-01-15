@@ -1,11 +1,25 @@
 'use strict';
 
 const mysql = require('mysql');
-const Query = require('..');
+const { Query } = require('..');
+
+/*
+CREATE DATABASE `test`;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `age` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `user`(`name`, `age`) VALUES ('yefei', 30);
+*/
 
 const conn = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',
+  database: 'test',
 });
 
 before(function() {
@@ -46,5 +60,12 @@ describe('Query', function() {
   it('query(callback(builder))', async function() {
     const q = new Query(conn);
     await q.query(b => b.select(b.raw('1+1')));
+  });
+
+  it('transaction', async function() {
+    const q = new Query(conn);
+    await q.transaction(async () => {
+      await q.query(b => b.update('user', { age: 100 }).where({ id: 1 }));
+    });
   });
 });
