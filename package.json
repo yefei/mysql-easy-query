@@ -11,9 +11,10 @@
   },
   "dependencies": {
     "debug": "^4.3.1",
-    "sql-easy-builder": "^0.0.2"
+    "sql-easy-builder": "^0.1.0"
   },
   "devDependencies": {
+    "assert": "^2.0.0",
     "eslint": "^7.17.0",
     "mocha": "^8.2.1",
     "mysql": "^2.18.1"

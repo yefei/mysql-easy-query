@@ -1,5 +1,6 @@
 'use strict';
 
+const assert = require('assert');
 const mysql = require('mysql');
 const { Query, PoolQuery } = require('..');
 
@@ -19,6 +20,7 @@ INSERT INTO `user`(`name`, `age`) VALUES ('yefei', 30);
 const pool = mysql.createPool({
   host: '127.0.0.1',
   user: 'root',
+  password: 'yefei11',
   database: 'test',
 });
 
@@ -43,6 +45,10 @@ after(function() {
   });
 });
 
+function eq(a, b) {
+  assert.deepStrictEqual(Object.assign({}, a), b);
+}
+
 describe('Query', function() {
   it('rawQuery', async function() {
     const q = new Query(conn);
@@ -63,6 +69,11 @@ describe('Query', function() {
   it('query(callback(builder))', async function() {
     const q = new Query(conn);
     await q.query(b => b.select(b.raw('1+1')));
+  });
+
+  it('one', async function() {
+    const q = new Query(conn);
+    eq(await q.query(b => b.select(b.raw('1+1')).one()), { '1+1': 2 });
   });
 
   it('transaction', async function() {
