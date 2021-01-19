@@ -1,9 +1,9 @@
 'use strict';
 
 const debug = require('./lib/debug');
-const Query = require('./lib/Query');
-const PoolQuery = require('./lib/PoolQuery');
-const PoolClusterQuery = require('./lib/PoolClusterQuery');
+const Query = require('./lib/query');
+const PoolQuery = require('./lib/pool_query');
+const PoolClusterQuery = require('./lib/pool_cluster_query');
 
 module.exports = {
   debug,
