@@ -1,5 +1,5 @@
 import { Connection, Pool, PoolConnection, PoolCluster } from 'mysql';
-import Builder = require('sql-easy-builder');
+import { Builder } from 'sql-easy-builder';
 
 export declare function debug(formatter: any, ...args: any[]): void;;
 
