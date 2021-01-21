@@ -75,6 +75,11 @@ describe('Query', function() {
     eq(await q.query(b => b.select(b.raw('1+1')).one()), { '1+1': 2 });
   });
 
+  it('count', async function() {
+    const q = new Query(conn);
+    await q.count('user');
+  });
+
   it('transaction', async function() {
     const q = new Query(conn);
     await q.transaction(async () => {
