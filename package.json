@@ -1,6 +1,6 @@
 {
   "name": "mysql-easy-query",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "description": "mysql easy query",
   "main": "index.js",
   "repository": "https://github.com/yefei/mysql-easy-query",
