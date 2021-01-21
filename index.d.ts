@@ -4,8 +4,8 @@ export { Builder } from 'sql-easy-builder';
 
 export declare function debug(formatter: any, ...args: any[]): void;;
 
-type builderCallback = (b: Builder) => Builder;
-type queryType = string | Builder | builderCallback;
+export type builderCallback = (b: Builder) => Builder;
+export type queryType = string | Builder | builderCallback;
 
 export declare class Query {
   constructor(conn: Connection);
@@ -86,7 +86,7 @@ export declare class PoolQuery {
   transaction<T>(callback: (query: Query) => T): Promise<T>;
 }
 
-interface PoolClusterQueryOptions {
+export interface PoolClusterQueryOptions {
   pattern?: string;
   selector?: string;
 }
