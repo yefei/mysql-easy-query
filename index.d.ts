@@ -1,6 +1,6 @@
 import { Connection, Pool, PoolConnection, PoolCluster } from 'mysql';
 import { Builder } from 'sql-easy-builder';
-export { Builder } from 'sql-easy-builder';
+export { Builder, Where, Raw, Op } from 'sql-easy-builder';
 
 export declare function debug(formatter: any, ...args: any[]): void;;
 

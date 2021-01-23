@@ -42,8 +42,6 @@ await q.transaction(async () => {
 });
 ```
 
-More query usage: [sql-easy-builder](https://github.com/yefei/sql-easy-builder)
-
 ### PoolQuery
 
 ```js
@@ -67,3 +65,7 @@ await poolQuery.transaction(async query => {
   await query.query(b => b.update('user', { age: 100 }).where({ id: 1 }));
 });
 ```
+
+Related projects:
+[easy-model](https://github.com/yefei/easy-model)
+[sql-easy-builder](https://github.com/yefei/sql-easy-builder)
