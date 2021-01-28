@@ -2,7 +2,7 @@ import { Connection, Pool, PoolConnection, PoolCluster } from 'mysql';
 import { Builder } from 'sql-easy-builder';
 export { Builder, Where, Raw, Op } from 'sql-easy-builder';
 
-export declare function debug(formatter: any, ...args: any[]): void;;
+export declare function debug(formatter: any, ...args: any[]): void;
 
 export type builderCallback = (b: Builder) => Builder;
 export type queryType = string | Builder | builderCallback;
