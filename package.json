@@ -1,6 +1,6 @@
 {
   "name": "mysql-easy-query",
-  "version": "0.4.15",
+  "version": "0.4.16",
   "description": "mysql easy query",
   "main": "index.js",
   "repository": "https://github.com/yefei/mysql-easy-query",
@@ -12,7 +12,7 @@
   "dependencies": {
     "debug": "^4.3.1",
     "mysql": "^2.18.1",
-    "sql-easy-builder": "^0.11.2"
+    "sql-easy-builder": "^0.12.0"
   },
   "devDependencies": {
     "assert": "^2.0.0",
