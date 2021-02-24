@@ -120,4 +120,14 @@ describe('PoolQuery', function() {
       await q.query(b => b.update('user', { age: 100 }).where({ id: 1 }));
     });
   });
+
+  it('benchmark', async function() {
+    this.timeout(1000000);
+    async function test() {
+      for (let i = 0; i < 10000; i++) {
+        await poolQuery.query('SELECT * FROM user');
+      }
+    }
+    await Promise.all([...Array(20)].map(test));
+  });
 });

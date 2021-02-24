@@ -11,18 +11,11 @@ export declare class Query {
   constructor(conn: Connection);
 
   /**
-   * 客户端组装SQL查询
+   * SQL查询
    * @param sql SQL语句
    * @param params 查询参数
    */
   rawQuery(sql: string, params?: any): Promise<any>;
-
-  /**
-   * 服务端组装SQL查询
-   * @param {string} sql SQL语句
-   * @param {*} [params] 参数
-   */
-  rawExecute(sql: string, params?: any): Promise<any>;
 
   /**
    * 开启事务
