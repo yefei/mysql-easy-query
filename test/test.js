@@ -62,6 +62,11 @@ describe('Query', function() {
     eq(await q.query('SELECT 1+1'), [{'1+1':2}]);
   });
 
+  it('query(raw sql, params)', async function() {
+    const q = new Query(conn);
+    eq(await q.query('SELECT ? as v', [100]), [{ v: 100 }]);
+  });
+
   it('query(builder)', async function() {
     const q = new Query(conn);
     const b = q.builder();
@@ -121,13 +126,13 @@ describe('PoolQuery', function() {
     });
   });
 
-  it('benchmark', async function() {
-    this.timeout(1000000);
-    async function test() {
-      for (let i = 0; i < 10000; i++) {
-        await poolQuery.query('SELECT * FROM user');
-      }
-    }
-    await Promise.all([...Array(20)].map(test));
-  });
+  // it('benchmark', async function() {
+  //   this.timeout(1000000);
+  //   async function test() {
+  //     for (let i = 0; i < 10000; i++) {
+  //       await poolQuery.query('SELECT * FROM user');
+  //     }
+  //   }
+  //   await Promise.all([...Array(20)].map(test));
+  // });
 });
