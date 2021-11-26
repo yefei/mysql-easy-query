@@ -3,7 +3,7 @@
 ## install
 
 ```
-npm i mysql-easy-query mysql2
+npm i mysql-easy-query mysql2 sql-easy-builder
 ```
 
 ## example
@@ -67,5 +67,4 @@ await poolQuery.transaction(async query => {
 ```
 
 Related projects:
-[easy-model](https://github.com/yefei/easy-model)
 [sql-easy-builder](https://github.com/yefei/sql-easy-builder)
