@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const assert = require('assert');
 const mysql = require('mysql2');
-const { Query, PoolQuery } = require('..');
+const { Query, PoolQuery } = require('../dist');
 
 /*
 CREATE DATABASE `test`;
