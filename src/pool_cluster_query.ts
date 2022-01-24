@@ -1,4 +1,4 @@
-import { PoolCluster, PoolConnection } from "mysql2";
+import { PoolCluster, PoolConnection } from "mysql";
 import { Builder } from "sql-easy-builder";
 import debug from './debug';
 import { Query } from './query';

@@ -3,7 +3,7 @@
 ## install
 
 ```
-npm i mysql-easy-query mysql2 sql-easy-builder
+npm i mysql-easy-query mysql sql-easy-builder
 ```
 
 ## example
@@ -11,7 +11,7 @@ npm i mysql-easy-query mysql2 sql-easy-builder
 ### Query
 
 ```js
-const mysql = require('mysql2');
+const mysql = require('mysql');
 const { Query } = require('mysql-easy-query');
 
 const conn = mysql.createConnection({
@@ -45,7 +45,7 @@ await q.transaction(async () => {
 ### PoolQuery
 
 ```js
-const mysql = require('mysql2');
+const mysql = require('mysql');
 const { PoolQuery } = require('mysql-easy-query');
 
 const pool = mysql.createPool({

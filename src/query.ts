@@ -1,4 +1,4 @@
-import { QueryOptions, Connection } from 'mysql2';
+import { QueryOptions, Connection } from 'mysql';
 import debug from './debug';
 import { Builder, WhereType } from 'sql-easy-builder';
 import { DataResult, QueryResult } from './types';
