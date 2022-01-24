@@ -1,6 +1,6 @@
 import { QueryOptions, Connection } from 'mysql2';
 import debug from './debug';
-import { Builder, JsonWhere, WhereType } from 'sql-easy-builder';
+import { Builder, WhereType } from 'sql-easy-builder';
 import { DataResult, QueryResult } from './types';
 
 export class Query {

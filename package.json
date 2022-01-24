@@ -12,9 +12,10 @@
   ],
   "scripts": {
     "prepublishOnly": "rm -fr dist && tsc",
-    "test": "tsc && mocha"
+    "test": "tsc && mocha test/*.spec.js"
   },
   "dependencies": {
+    "@types/mysql": "^2.15.20",
     "debug": "^4.3.1",
     "sql-easy-builder": "^2.0.3"
   },
@@ -24,6 +25,7 @@
     "assert": "^2.0.0",
     "dotenv": "^8.2.0",
     "mocha": "^8.2.1",
+    "mysql": "^2.18.1",
     "mysql2": "^2.3.3"
   }
 }
